@@ -11,13 +11,16 @@ import java.util.Map;
 public class DictionaryController {
     private final Map<String, String> dictionaryMap = Map.ofEntries(
             Map.entry("hello", "xin chào"),
-            Map.entry("apple", "quả táo"),
-            Map.entry("banana", "quả chuối"),
-            Map.entry("orange", "quá can"),
-            Map.entry("Leson", "quà chanh"),
-            Map.entry("nelon", "quả dưa"),
-            Map.entry("satermelon","quả cưa hấu"),
-            Map.entry("blueberry", "quả việt quất")
+            Map.entry("dog", "chó"),
+            Map.entry("cat", "mèo"),
+            Map.entry("book", "sách"),
+            Map.entry("pen", "bút"),
+            Map.entry("car", "ô tô"),
+            Map.entry("table", "bàn"),
+            Map.entry("chair", "ghế"),
+            Map.entry("tree", "cây"),
+            Map.entry("flower", "hoa"),
+            Map.entry("bird", "chim")
     );
 
     @GetMapping("/dictionary")
