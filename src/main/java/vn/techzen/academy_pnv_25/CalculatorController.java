@@ -5,27 +5,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 public class CalculatorController {
+
     @GetMapping("/calculator")
     public ResponseEntity<String> calculate(
-            @RequestParam(value = "firstNumber", defaultValue = "") String firstNumberStr,
-            @RequestParam(value = "secondNumber", defaultValue = "") String secondNumberStr,
-            @RequestParam(value = "operator", defaultValue = "") String operator) {
-        if (firstNumberStr.isEmpty()) {
-            return ResponseEntity.badRequest().body("First number cannot be empty.");
-        } else if (secondNumberStr.isEmpty()) {
-            return ResponseEntity.badRequest().body("Second number cannot be empty.");
-        } else if (!isDouble(firstNumberStr)) {
+            @RequestParam(value = "firstNumber", required = true) String firstNumberStr,
+            @RequestParam(value = "secondNumber", required = true) String secondNumberStr,
+            @RequestParam(value = "operator", required = true) String operator) {
+
+        // Validate and parse input numbers
+        Optional<Double> firstNumberOpt = parseDouble(firstNumberStr);
+        Optional<Double> secondNumberOpt = parseDouble(secondNumberStr);
+
+        if (firstNumberOpt.isEmpty()) {
             return ResponseEntity.badRequest().body("First number must be numeric.");
-        } else if (!isDouble(secondNumberStr)) {
+        }
+
+        if (secondNumberOpt.isEmpty()) {
             return ResponseEntity.badRequest().body("Second number must be numeric.");
         }
 
-        double firstNumber = Double.parseDouble(firstNumberStr);
-        double secondNumber = Double.parseDouble(secondNumberStr);
+        double firstNumber = firstNumberOpt.get();
+        double secondNumber = secondNumberOpt.get();
         double result;
 
+        // Perform calculation based on operator
         switch (operator) {
             case "+" -> result = firstNumber + secondNumber;
             case "-" -> result = firstNumber - secondNumber;
@@ -37,17 +44,19 @@ public class CalculatorController {
                 result = firstNumber / secondNumber;
             }
             default -> {
-                return ResponseEntity.badRequest().body("Invalid operator.");
+                return ResponseEntity.badRequest().body("Invalid operator. Supported operators are: +, -, *, /.");
             }
         }
-        return ResponseEntity.ok("Result:" + result);
+
+        return ResponseEntity.ok("Result: " + result);
     }
-    private boolean isDouble(String str) {
+
+    // Utility method to validate and parse a string into a double
+    private Optional<Double> parseDouble(String str) {
         try {
-            Double.parseDouble(str);
-            return true;
+            return Optional.of(Double.parseDouble(str));
         } catch (NumberFormatException e) {
-            return false;
+            return Optional.empty();
         }
     }
 }
