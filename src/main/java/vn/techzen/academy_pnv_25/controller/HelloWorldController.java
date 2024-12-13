@@ -1,4 +1,4 @@
-package vn.techzen.academy_pnv_25.controllers;
+package vn.techzen.academy_pnv_25.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
