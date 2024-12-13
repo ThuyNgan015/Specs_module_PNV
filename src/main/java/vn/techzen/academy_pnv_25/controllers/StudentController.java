@@ -1,8 +1,9 @@
-package vn.techzen.academy_pnv_25;
+package vn.techzen.academy_pnv_25.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.techzen.academy_pnv_25.models.Student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
