@@ -40,7 +40,7 @@ public class EmployeeController {
 
     @PostMapping
     public Employee addEmployee(@RequestBody Employee employee) {
-        employee.setId((long) (employees.size() + 1)); // Tự động tăng ID
+        employee.setId((long) (employees.size() + 1));
         employees.add(employee);
         return employee;
     }
