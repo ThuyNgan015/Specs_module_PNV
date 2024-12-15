@@ -3,6 +3,9 @@ package vn.techzen.academy_pnv_25.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vn.techzen.academy_pnv_25.dto.ApiResponse;
+import vn.techzen.academy_pnv_25.dto.exception.AppException;
+import vn.techzen.academy_pnv_25.dto.exception.ErrorCode;
 import vn.techzen.academy_pnv_25.model.Employee;
 
 import java.util.ArrayList;
@@ -31,18 +34,19 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable Long id) {
-        return employees.stream()
-                .filter(employee -> employee.getId().equals(id))
+    public ResponseEntity<ApiResponse> getEmployeeById(@PathVariable Long id) {
+        Employee employee = employees.stream()
+                .filter(e -> e.getId().equals(id))
                 .findFirst()
-                .orElse(null);
+                .orElseThrow(() -> new AppException(ErrorCode.EMPLOYEE_NOT_FOUND));
+        return ResponseEntity.ok(new ApiResponse(true, "Employee found: " + employee.getName()));
     }
 
     @PostMapping
-    public Employee addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<ApiResponse> addEmployee(@RequestBody Employee employee) {
         employee.setId((long) (employees.size() + 1));
         employees.add(employee);
-        return employee;
+        return new ResponseEntity<>(new ApiResponse(true, "Employee created successfully!"), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
@@ -60,7 +64,11 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(@PathVariable Long id) {
-        employees.removeIf(employee -> employee.getId().equals(id));
+    public ResponseEntity<ApiResponse> deleteEmployee(@PathVariable Long id) {
+        boolean removed = employees.removeIf(employee -> employee.getId().equals(id));
+        if (!removed) {
+            throw new AppException(ErrorCode.EMPLOYEE_NOT_FOUND);
+        }
+        return new ResponseEntity<>(new ApiResponse(true, "Employee deleted successfully!"), HttpStatus.NO_CONTENT);
     }
 }
