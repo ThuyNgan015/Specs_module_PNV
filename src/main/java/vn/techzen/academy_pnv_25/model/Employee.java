@@ -1,22 +1,16 @@
 package vn.techzen.academy_pnv_25.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
+import java.util.UUID;
+
 public class Employee {
-    private Long id;
+    private UUID id;
     private String name;
     private String birthDate;
     private String gender;
     private Long salary;
 
-    public Employee(Long id, String name, String birthDate, String gender, Long salary) {
+    public Employee(UUID id, String name, String birthDate, String gender, Long salary) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
@@ -25,11 +19,11 @@ public class Employee {
     }
 
     // Getters and Setters
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

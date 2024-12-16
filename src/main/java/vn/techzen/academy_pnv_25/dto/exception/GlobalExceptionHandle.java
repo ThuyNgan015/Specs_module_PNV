@@ -20,7 +20,7 @@ import vn.techzen.academy_pnv_25.dto.ApiResponse;
 //    }
 //}
 
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandle {
 
     @ExceptionHandler(AppException.class)
     public ResponseEntity<ApiResponse> handleAppException(AppException ex) {
