@@ -1,28 +1,18 @@
 package vn.techzen.academy_pnv_25.dto;
 
-//import com.fasterxml.jackson.annotation.JsonInclude;
-//import lombok.*;
-//import lombok.experimental.FieldDefaults;
-//
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@FieldDefaults(level = AccessLevel.PRIVATE)
-//@JsonInclude(JsonInclude.Include.NON_NULL)
-//@Builder
-//public class ApiResponse<T> {
-//    Integer code;
-//    String message;
-//    T data;
-//}
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponse {
-    private boolean success;
-    private String message;
+@FieldDefaults(level = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@Builder
+public class ApiResponse<T> {
+    Integer code;
+    String message;
+    T data;
 }
