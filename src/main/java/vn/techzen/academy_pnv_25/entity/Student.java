@@ -1,4 +1,4 @@
-package vn.techzen.academy_pnv_25.model;
+package vn.techzen.academy_pnv_25.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

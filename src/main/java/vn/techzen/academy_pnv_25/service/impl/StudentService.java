@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
-import vn.techzen.academy_pnv_25.model.Student;
+import vn.techzen.academy_pnv_25.entity.Student;
 import vn.techzen.academy_pnv_25.repository.IStudentRepository;
 import vn.techzen.academy_pnv_25.service.IStudentService;
 

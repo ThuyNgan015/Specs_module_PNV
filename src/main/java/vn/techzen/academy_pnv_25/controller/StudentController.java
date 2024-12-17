@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import vn.techzen.academy_pnv_25.dto.ApiResponse;
 import vn.techzen.academy_pnv_25.dto.exception.AppException;
 import vn.techzen.academy_pnv_25.dto.exception.ErrorCode;
-import vn.techzen.academy_pnv_25.model.Student;
+import vn.techzen.academy_pnv_25.entity.Student;
 import vn.techzen.academy_pnv_25.service.IStudentService;
 
 import java.util.List;

@@ -1,0 +1,2 @@
+INSERT INTO student_management_12_2024.employee (birthday, department_id, salary, gender, name, phone) VALUES ('2004-10-15', 1, 20000000, 'Nữ', 'Thùy Ngân', '0367288467');
+INSERT INTO student_management_12_2024.employee (birthday, department_id, salary, gender, name, phone) VALUES ('2000-02-22', 2, 16000000, 'Nam', 'Dịch Quân', '0933673980');

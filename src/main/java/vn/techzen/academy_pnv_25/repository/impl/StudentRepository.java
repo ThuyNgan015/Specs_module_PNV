@@ -1,6 +1,6 @@
 package vn.techzen.academy_pnv_25.repository.impl;
 
-import vn.techzen.academy_pnv_25.model.Student;
+import vn.techzen.academy_pnv_25.entity.Student;
 
 import java.util.ArrayList;
 import java.util.Arrays;
